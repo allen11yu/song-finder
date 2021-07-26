@@ -1,0 +1,25 @@
+body {
+  background-image: linear-gradient(purple, pink);
+  background-attachment: fixed;
+  font-family: 'Grandstander', cursive;
+  width: 80%;
+  margin: auto;
+}
+
+header h1 {
+  font-size: 75px;
+  text-align: center;
+  color: aliceblue;
+  margin-top: 24px;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main, #search, #record {
+  border: solid;
+  height: 1000px;
+}
