@@ -2,7 +2,7 @@ body {
   background-image: linear-gradient(purple, pink);
   background-attachment: fixed;
   font-family: 'Grandstander', cursive;
-  width: 80%;
+  width: 50%;
   margin: auto;
 }
 
@@ -11,15 +11,64 @@ header h1 {
   text-align: center;
   color: aliceblue;
   margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: aliceblue;
+  text-align: center;
+  font-size: 24px;
 }
 
 main {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
-main, #search, #record {
+#record {
+  margin-top: 150px;
   border: solid;
-  height: 1000px;
+  padding: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  animation: ripple 1.5s linear infinite;
+  transition: all 0.7s ease;
+}
+
+article {
+  color: aliceblue;
+  margin-top: 200px;
+}
+
+article h2 {
+  font-size: 32px;
+}
+
+article p {
+  font-size: 24px;
+}
+
+#record:hover {
+  transform: scale(1.1);
+}
+
+#record:focus {
+  outline: none;
+}
+
+@keyframes ripple {
+  from {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.3),
+      0 0 0 3px rgba(255, 255, 255, 0.3),
+      0 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  to {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3),
+      0 0 0 4px rgba(255, 255, 255, 0.3),
+      0 0 0 20px rgba(255, 255, 255, 0),
+      0 0 0 30px rgba(255, 255, 255, 0);
+  }
 }
