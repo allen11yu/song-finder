@@ -37,6 +37,10 @@ main {
   transition: all 0.7s ease;
 }
 
+img {
+  pointer-events: none;
+}
+
 article {
   color: aliceblue;
   margin-top: 200px;
