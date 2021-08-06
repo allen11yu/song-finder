@@ -20,7 +20,7 @@ header p {
   font-size: 24px;
 }
 
-main {
+main, #song-info {
   display: flex;
   justify-content: center;
   align-items: center;
