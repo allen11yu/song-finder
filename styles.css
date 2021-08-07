@@ -2,7 +2,7 @@ body {
   background-image: linear-gradient(purple, pink);
   background-attachment: fixed;
   font-family: 'Grandstander', cursive;
-  width: 50%;
+  width: 55%;
   margin: auto;
 }
 
@@ -20,14 +20,32 @@ header p {
   font-size: 24px;
 }
 
-main, #song-info {
+main{
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
+#song-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+#track-detail h2 {
+  color: aliceblue;
+  font-size: 40px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+#track-detail p {
+  color: aliceblue;
+  text-align: center;
+  font-size: 24px;
+}
+
+
+
 #record {
-  margin-top: 150px;
   border: solid;
   padding: 20px;
   border-radius: 50%;
@@ -43,7 +61,6 @@ img {
 
 article {
   color: aliceblue;
-  margin-top: 200px;
 }
 
 article h2 {

@@ -4,7 +4,7 @@
   window.addEventListener("load", init);
 
   function init() {
-    id("record").addEventListener("click", processInfo);
+    id("record").addEventListener("click", startRecord);
   }
 
   function startRecord() {
@@ -35,7 +35,7 @@
 
         setTimeout(() => {
           mediaRecorder.stop();
-        }, 5000);
+        }, 3000);
     });
   }
 
@@ -141,25 +141,41 @@
     //document.body.removeChild(a);
   }
 
-  function processInfo() {
-    // clear the button
+  function processInfo(response) {
+    let title = response.data.title;
+    let artist = response.data.artist;
+    fetchCover(title, artist);
+
+    console.log(title, "by", artist);
+  }
+
+  function processDetail(response, title, artist) {
+    console.log("testing");
+    console.log(response);
+    console.log(title);
+    console.log(artist);
+
     let mainContent = qs("main");
     mainContent.innerHTML = "";
 
-    let songContainer = gen("section");
-    songContainer.id = "song-info";
+    let coverUrl = response.tracks.hits["0"].track.images.coverarthq;
+    console.log(coverUrl);
 
     let coverArtContainer = gen("div");
+    coverArtContainer.id = "cover-art";
     let coverArt = gen("img");
-    coverArt.src = "img/mic128.png";
+    coverArt.src = coverUrl;
+    coverArt.width = "300";
+    coverArt.height = "300";
     coverArt.alt = "cover art";
     coverArtContainer.append(coverArt);
 
     let trackContainer = gen("div");
+    trackContainer.id = "track-detail";
     let trackTitle = gen("h2");
-    trackTitle.textContent = "Song";
+    trackTitle.textContent = title;
     let trackArtist = gen("p");
-    trackArtist.textContent = "by Me";
+    trackArtist.textContent = "by " + artist;
 
     trackContainer.append(trackTitle);
     trackContainer.append(trackArtist);
@@ -167,26 +183,46 @@
     mainContent.append(coverArtContainer);
     mainContent.append(trackContainer);
 
+    mainContent.id = "song-info";
+  }
 
+  function fetchCover(title, artist) {
+    let term = "term=" + title + " " + artist;
+    let locale = "&locale=en-US";
+    let offset = "&offset=0";
+    let limit = "&limit=1";
 
-    let title = response.data.title;
-    let author = response.data.artist;
-    console.log(title, "by", author);
+    let url = shazamapi.URL + term + locale + offset + limit;
+    url = url.replaceAll(" ", "%20");
+    console.log("cover url", url);
+
+    fetch(url, {
+	    method: "GET",
+	    headers: shazamapi.HEADERS
+    })
+    .then(checkStatus)
+    .then(resp => resp.json())
+    .then(function(response) {
+      processDetail(response, title, artist);
+    })
+    .catch(function(){
+      console.error();
+    });
   }
 
   function fetchDetect(file) {
     let form = new FormData();
     form.append("file", file);
 
-    fetch(api.URL, {
+    fetch(miapi.URL, {
       method: "POST",
-      headers: api.HEADERS,
+      headers: miapi.HEADERS,
       body: form
     })
     .then(checkStatus)
     .then(resp => resp.json())
     .then(processInfo)
-    .catch(function(){
+    .catch(function() {
       console.error();
     });
   }
