@@ -27,14 +27,13 @@ main{
 
 #song-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 #track-detail h2 {
   color: aliceblue;
   font-size: 40px;
   text-align: center;
-  margin-left: 10px;
 }
 
 #track-detail p {
@@ -43,7 +42,22 @@ main{
   font-size: 24px;
 }
 
+#track-detail {
+  margin-left: 20px;
+}
 
+.after-btn {
+  cursor: pointer;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: aliceblue;
+  background-color: rgb(255, 98, 25);
+  margin: 0 auto;
+  font-family: 'Grandstander', cursive;
+  display: block;
+}
 
 #record {
   border: solid;
@@ -57,18 +71,6 @@ main{
 
 img {
   pointer-events: none;
-}
-
-article {
-  color: aliceblue;
-}
-
-article h2 {
-  font-size: 32px;
-}
-
-article p {
-  font-size: 24px;
 }
 
 #record:hover {

@@ -35,7 +35,7 @@
 
         setTimeout(() => {
           mediaRecorder.stop();
-        }, 3000);
+        }, 5000);
     });
   }
 
@@ -149,16 +149,17 @@
     console.log(title, "by", artist);
   }
 
-  function processDetail(response, title, artist) {
+  function processDetail(response) {
     console.log("testing");
     console.log(response);
-    console.log(title);
-    console.log(artist);
 
     let mainContent = qs("main");
     mainContent.innerHTML = "";
 
     let coverUrl = response.tracks.hits["0"].track.images.coverarthq;
+    let title = response.tracks.hits["0"].track.title;
+    let artist = response.tracks.hits["0"].track.subtitle;
+    let readMoreUrl = response.tracks.hits["0"].track.url;
     console.log(coverUrl);
 
     let coverArtContainer = gen("div");
@@ -177,13 +178,35 @@
     let trackArtist = gen("p");
     trackArtist.textContent = "by " + artist;
 
+    let readMoreBtn = gen("button");
+    readMoreBtn.classList.add("after-btn");
+    readMoreBtn.addEventListener("click", function() {
+      readMore(readMoreUrl);
+    });
+    readMoreBtn.textContent = "Read More";
+
+    let refreshBtn = gen("button");
+    refreshBtn.classList.add("after-btn");
+    refreshBtn.addEventListener("click", refresh);
+    refreshBtn.textContent = "Find Another Song?";
+
     trackContainer.append(trackTitle);
     trackContainer.append(trackArtist);
+    trackContainer.append(readMoreBtn);
+    trackContainer.append(refreshBtn);
 
     mainContent.append(coverArtContainer);
     mainContent.append(trackContainer);
 
     mainContent.id = "song-info";
+  }
+
+  function refresh() {
+    window.parent.location = window.parent.location.href;
+  }
+
+  function readMore(readMoreUrl) {
+    window.open(readMoreUrl, "_blank");
   }
 
   function fetchCover(title, artist) {
@@ -202,10 +225,8 @@
     })
     .then(checkStatus)
     .then(resp => resp.json())
-    .then(function(response) {
-      processDetail(response, title, artist);
-    })
-    .catch(function(){
+    .then(processDetail)
+    .catch(function() {
       console.error();
     });
   }
