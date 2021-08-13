@@ -8,8 +8,10 @@
   }
 
   function startRecord() {
+    clearStatus();
     navigator.mediaDevices.getUserMedia({audio: true, video: false})
       .then(stream => {
+        recordingMsg();
         let mediaRecorder = new MediaRecorder(stream);
         mediaRecorder.start();
 
@@ -36,7 +38,48 @@
         setTimeout(() => {
           mediaRecorder.stop();
         }, 5000);
-    });
+      });
+  }
+
+  function clearStatus() {
+    let currStatus = qs(".status");
+    currStatus.innerHTML = "";
+  }
+
+  function handleError() {
+    let currStatus = qs(".status");
+    currStatus.textContent = "Oops, there's a problem. Please try again.";
+  }
+
+  function handleShazamErr(title, artist) {
+    let trackContainer = gen("div");
+    trackContainer.id = "track-detail";
+    let trackTitle = gen("h2");
+    trackTitle.textContent = title;
+    let trackArtist = gen("p");
+    trackArtist.textContent = "by " + artist;
+
+    trackContainer.append(trackTitle);
+    trackContainer.append(trackArtist);
+
+    let refreshBtn = gen("button");
+    refreshBtn.classList.add("after-btn");
+    refreshBtn.addEventListener("click", refresh);
+    refreshBtn.textContent = "Find Another Song?";
+    trackContainer.append(refreshBtn);
+
+    let detectedContent = id("detected");
+    detectedContent.append(trackContainer);
+  }
+
+  function recordingMsg() {
+    let currStatus = qs(".status");
+    currStatus.textContent = "Recording";
+  }
+
+  function detectingMsg() {
+    let currStatus = qs(".status");
+    currStatus.textContent = "Detecting";
   }
 
   function audioBufferToWav(aBuffer) {
@@ -116,29 +159,8 @@
     var mp3Blob = new Blob(buffer, {type: 'audio/mp3'});
     let audioFile = new File([mp3Blob], "song.mp3", {type: "audio/mpeg", lastModified: new Date().getTime()});
     console.log(audioFile);
+    detectingMsg();
     fetchDetect(audioFile);
-    //downloadFile(mp3Blob);
-  }
-
-  function downloadFile(audioBlob) {
-    // Create an invisible A element
-    const a = document.createElement("a");
-    a.textContent = "hi";
-    //a.style.display = "none";
-    document.body.appendChild(a);
-
-    // Set the HREF to a Blob representation of the data to be downloaded
-    a.href = window.URL.createObjectURL(audioBlob);
-
-    // Use download attribute to set set desired file name
-    a.setAttribute("download", "brandon");
-
-    // Trigger the download by simulating click
-    //a.click();
-
-    // Cleanup
-    //window.URL.revokeObjectURL(a.href);
-    //document.body.removeChild(a);
   }
 
   function processInfo(response) {
@@ -156,11 +178,12 @@
     let mainContent = qs("main");
     mainContent.innerHTML = "";
 
+    let detectedContent = id("detected");
+
     let coverUrl = response.tracks.hits["0"].track.images.coverarthq;
     let title = response.tracks.hits["0"].track.title;
     let artist = response.tracks.hits["0"].track.subtitle;
     let readMoreUrl = response.tracks.hits["0"].track.url;
-    console.log(coverUrl);
 
     let coverArtContainer = gen("div");
     coverArtContainer.id = "cover-art";
@@ -195,10 +218,8 @@
     trackContainer.append(readMoreBtn);
     trackContainer.append(refreshBtn);
 
-    mainContent.append(coverArtContainer);
-    mainContent.append(trackContainer);
-
-    mainContent.id = "song-info";
+    detectedContent.append(coverArtContainer);
+    detectedContent.append(trackContainer);
   }
 
   function refresh() {
@@ -227,7 +248,7 @@
     .then(resp => resp.json())
     .then(processDetail)
     .catch(function() {
-      console.error();
+      handleShazamErr(title, artist);
     });
   }
 
@@ -243,9 +264,7 @@
     .then(checkStatus)
     .then(resp => resp.json())
     .then(processInfo)
-    .catch(function() {
-      console.error();
-    });
+    .catch(handleError);
   }
 
   /**

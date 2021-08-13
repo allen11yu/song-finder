@@ -20,12 +20,19 @@ header p {
   font-size: 24px;
 }
 
-main{
+#start {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-#song-info {
+.status {
+  color: aliceblue;
+  font-size: 48px;
+}
+
+#detected {
   display: flex;
   justify-content: center;
 }
@@ -57,9 +64,11 @@ main{
   margin: 0 auto;
   font-family: 'Grandstander', cursive;
   display: block;
+  margin-top: 10px;
 }
 
 #record {
+  margin: 70px;
   border: solid;
   padding: 20px;
   border-radius: 50%;

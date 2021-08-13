@@ -3,6 +3,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grandstander&display=swap">
+    <script src="https://cdn.jsdelivr.net/gh/foobar404/wave.js/dist/bundle.iife.js"></script>
     <script src="exclude/api_key.js"></script>
     <script src='lame.all.js'></script>
     <script src="index.js"></script>
@@ -14,11 +15,14 @@
       <p>Click on the record button to start finding the song</p>
     </header>
 
-    <main>
+    <main id="start">
       <button type="button" id="record">
         <img src="img/mic128.png" alt="microphone icon">
       </button>
+      <p class="status"></p>
     </main>
+
+    <main id="detected"></main>
 
     <footer>
     </footer>
