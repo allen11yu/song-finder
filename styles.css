@@ -1,52 +1,45 @@
 body {
   background-image: linear-gradient(purple, pink);
   background-attachment: fixed;
-  font-family: 'Grandstander', cursive;
   width: 55%;
   margin: auto;
 }
 
+body, .after-btn {
+  font-family: 'Grandstander', cursive;
+}
+
 header h1 {
   font-size: 75px;
-  text-align: center;
-  color: aliceblue;
   margin-top: 24px;
   margin-bottom: 10px;
 }
 
-header p {
-  color: aliceblue;
+header h1, header p, #track-detail h2, #track-detail p, .after-btn, .status {
   text-align: center;
+  color: aliceblue;
+}
+
+header p, #track-detail p {
   font-size: 24px;
 }
 
-#start {
+#start, #detected {
   display: flex;
   justify-content: center;
+}
+
+#start {
   flex-direction: column;
   align-items: center;
 }
 
 .status {
-  color: aliceblue;
   font-size: 48px;
 }
 
-#detected {
-  display: flex;
-  justify-content: center;
-}
-
 #track-detail h2 {
-  color: aliceblue;
   font-size: 40px;
-  text-align: center;
-}
-
-#track-detail p {
-  color: aliceblue;
-  text-align: center;
-  font-size: 24px;
 }
 
 #track-detail {
@@ -54,26 +47,24 @@ header p {
 }
 
 .after-btn {
-  cursor: pointer;
-  text-align: center;
-  padding: 20px;
   border-radius: 10px;
   font-size: 16px;
-  color: aliceblue;
   background-color: rgb(255, 98, 25);
   margin: 0 auto;
-  font-family: 'Grandstander', cursive;
   display: block;
   margin-top: 10px;
+}
+
+.after-btn, #record {
+  cursor: pointer;
+  padding: 20px;
 }
 
 #record {
   margin: 70px;
   border: solid;
-  padding: 20px;
   border-radius: 50%;
   border: 2px solid white;
-  cursor: pointer;
   animation: ripple 1.5s linear infinite;
   transition: all 0.7s ease;
 }
