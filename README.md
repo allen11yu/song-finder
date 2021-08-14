@@ -4,9 +4,9 @@ This web application integrates APIs from the Rapid API and [lamejs](https://git
 
 ## Demo
 
-Below is an example of recognizing the song *Blueberry Fago* by *Lil Mosey*
+Below is an example of recognizing the song *Blueberry Fago* by *Lil Mosey*.
 
-Link to video
+https://user-images.githubusercontent.com/64717587/129461109-58184421-ef1a-48f1-bc5c-ec0277046e15.mp4
 
 ## Usage
 
