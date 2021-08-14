@@ -12,9 +12,9 @@ https://user-images.githubusercontent.com/64717587/129461109-58184421-ef1a-48f1-
 
 Make sure to subscribe to the following APIs:
 
-[Music Identify API by Eipiai](https://rapidapi.com/eipiai-eipiai-default/api/music-identify/)
+- [Music Identify API by Eipiai](https://rapidapi.com/eipiai-eipiai-default/api/music-identify/)
 
-[Shazam API by Api Dojo](https://rapidapi.com/apidojo/api/shazam/)
+- [Shazam API by Api Dojo](https://rapidapi.com/apidojo/api/shazam/)
 
 Then, copy the header parameters and paste it in the `api_keys.js` file.
 
