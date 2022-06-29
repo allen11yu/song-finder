@@ -13,6 +13,7 @@
    */
   function startRecord() {
     clearStatus();
+    id("record").disabled = true;
     navigator.mediaDevices.getUserMedia({audio: true, video: false})
       .then(stream => {
         recordingMsg();

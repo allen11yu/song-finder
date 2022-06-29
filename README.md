@@ -4,7 +4,9 @@ This web application integrates APIs from the Rapid API and [lamejs](https://git
 
 ## Demo
 
-Below is an example of recognizing the song *Blueberry Fago* by *Lil Mosey*.
+Check out this [application](https://glowing-cascaron-1335dd.netlify.app/)
+
+Below is an example of recognizing the song _Blueberry Fago_ by _Lil Mosey_.
 
 https://user-images.githubusercontent.com/64717587/129461109-58184421-ef1a-48f1-bc5c-ec0277046e15.mp4
 
